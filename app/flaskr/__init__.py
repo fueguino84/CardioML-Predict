@@ -31,7 +31,6 @@ def create_app(test_config=None):
         tabaquismo = request.args.get("tabaquismo")
         error = None
     
-        model = pickle.load("../../model.pkl")
         model = tf.keras.models.load_model("../../model.keras")
         
 
@@ -57,9 +56,7 @@ def create_app(test_config=None):
 
     return jsonify(result.tolist())
     
-    #URL para probar
-    #http://127.0.0.1:5000/predict?colesterol=0.1,presion=0.71,glucosa=0.85,edad=0.45,sobrepeso=1,tabaquismo=0& 
-
+    
     @app.route('/requests',methods=['GET', 'POST'])
     def requests():
         result=get_db().request_log.find()
