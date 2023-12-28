@@ -109,10 +109,12 @@ plt.show()
 result = model.evaluate(scaled_X_test, y_test)
 print("Evaluate the model: ",result)
 
-import matplotlib.pyplot as plt
+
 plt.xlabel("# Epoca")
 plt.ylabel("Magnitud de pérdida")
 plt.plot(historicalModel.history["loss"])
+plt.legend()
+plt.show()
 
 print("Datos a predecir:")
 print(X_train[:3])
