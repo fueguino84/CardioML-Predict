@@ -8,7 +8,6 @@ import tensorflow as tf
 #from datetime import datetime
 #from bson.json_util import dumps
 
-
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
@@ -17,8 +16,6 @@ def create_app(test_config=None):
     @app.route('/hello')
     def hello():
         return 'Hello, World!'
-
-    return app
 
     @app.route('/predict',methods=['GET', 'POST'])
     def predict():
@@ -32,7 +29,6 @@ def create_app(test_config=None):
         error = None
     
         model = tf.keras.models.load_model("../../model.keras")
-        
 
         if not colesterol:
             error = 'colesterol is required.'
@@ -54,8 +50,7 @@ def create_app(test_config=None):
 
         result = model.predict(param)
 
-    return jsonify(result.tolist())
-    
+        return jsonify(result.tolist())
     
     @app.route('/requests',methods=['GET', 'POST'])
     def requests():
