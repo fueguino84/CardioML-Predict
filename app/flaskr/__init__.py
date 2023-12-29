@@ -4,6 +4,7 @@ import numpy as np
 import pickle
 import pandas as pd
 import tensorflow as tf
+import json
 #from flaskr.db import get_db
 #from datetime import datetime
 #from bson.json_util import dumps
@@ -17,49 +18,41 @@ def create_app(test_config=None):
     def hello():
         return 'Hello, World!'
 
-    @app.route('/predict',methods=['GET', 'POST'])
+    @app.route('/predict', methods=['GET', 'POST'])
     def predict():
-       
-        colesterol = request.args.get("colesterol")
-        presion = request.args.get("presion")
-        glucosa = request.args.get("glucosa")
-        edad = request.args.get("edad")
-        sobrepeso = request.args.get("sobrepeso")
-        tabaquismo = request.args.get("tabaquismo")
-        error = None
-    
-        model = tf.keras.models.load_model("../../model.keras")
+        if request.method == 'GET':
+            colesterol = float(request.args.get("colesterol", 0))
+            presion = float(request.args.get("presion", 0))
+            glucosa = float(request.args.get("glucosa", 0))
+            edad = float(request.args.get("edad", 0))
+            sobrepeso = float(request.args.get("sobrepeso", 0))
+            tabaquismo = float(request.args.get("tabaquismo", 0))
+        elif request.method == 'POST':
+            data = request.get_json()
+            colesterol = float(data.get("colesterol", 0))
+            presion = float(data.get("presion", 0))
+            glucosa = float(data.get("glucosa", 0))
+            edad = float(data.get("edad", 0))
+            sobrepeso = float(data.get("sobrepeso", 0))
+            tabaquismo = float(data.get("tabaquismo", 0))
+        else:
+            abort(400, description='Invalid request method.')
 
-        if not colesterol:
-            error = 'colesterol is required.'
-        elif not presion:
-            error = 'presion is required.'
-        elif not glucosa:
-            error = 'glucosa is required.'
-        elif not edad:
-            error = 'edad is required.'
-        elif not sobrepeso:
-            error = 'sobrepeso is required.'
-        elif not tabaquismo:
-            error = 'tabaquismo is required.'
+        model = tf.keras.models.load_model("./../model.keras")
+        param = np.array([colesterol, presion, glucosa, edad, sobrepeso, tabaquismo])
+        result = model.predict(np.expand_dims(param, axis=0))
 
-        if error:
-            abort(404, description=error) 
+        return jsonify({"Riesgo Cardiaco": result.item()})
+
         
-        param=np.array([colesterol,presion,glucosa,edad,sobrepeso,tabaquismo])
-
-        result = model.predict(param)
-
-        return jsonify(result.tolist())
-    
-    @app.route('/requests',methods=['GET', 'POST'])
+    @app.route('/requests', methods=['GET', 'POST'])
     def requests():
-        result=get_db().request_log.find()
+        result = get_db().request_log.find()
         # se convierte el cursor a una lista
-        list_cur = list(result)         
+        list_cur = list(result)
         # se serializan los objetos
-        json_data = dumps(list_cur, indent = 2)  
-        #retornamos la rista con los metadatos adecuados
-        return Response(json_data,mimetype='application/json')
+        json_data = dumps(list_cur, indent=2)
+        # retornamos la rista con los metadatos adecuados
+        return Response(json_data, mimetype='application/json')
 
     return app
