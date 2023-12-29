@@ -42,7 +42,12 @@ def create_app(test_config=None):
         param = np.array([colesterol, presion, glucosa, edad, sobrepeso, tabaquismo])
         result = model.predict(np.expand_dims(param, axis=0))
 
-        return jsonify({"Riesgo Cardiaco": result.item()})
+        if result.item()<1:
+            return "El paciente no tiene riesgo cardiaco.Valor obtenido: " + str(result.item())
+        
+        else:
+            return "El paciente si tiene riesgo cardiaco.Valor obtenido: " + str(result.item())
+        
 
         
     @app.route('/requests', methods=['GET', 'POST'])
