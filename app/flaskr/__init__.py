@@ -1,14 +1,20 @@
-import os
+# import os
 from flask import (Flask,request,Response,abort,jsonify)  
-import numpy as np
-import pickle
-import pandas as pd
-import tensorflow as tf
-import json
+# import numpy as np
+# import pickle
+# import pandas as pd
+# import tensorflow as tf
+# import json
+
+app = Flask(__name__)
+
+from flaskr import routes
+
 #from flaskr.db import get_db
 #from datetime import datetime
 #from bson.json_util import dumps
 
+'''
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
@@ -61,3 +67,4 @@ def create_app(test_config=None):
         return Response(json_data, mimetype='application/json')
 
     return app
+    '''
