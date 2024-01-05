@@ -1,15 +1,11 @@
-from flask import (Flask,request,Response,abort,jsonify)  
+from flask import (Flask,request,Response,abort,jsonify,g)  
 from flaskr import app
 import json
+from microservices import db
 from microservices import predictor
 
-# a simple page that says hello
-@app.route('/hello')
-def hello():
-    return 'Hello, World!'
-
-@app.route('/predict', methods=['GET'])
-def predict():
+@app.route('/service', methods=['GET'])
+def service():
 
     # TODO: Authenticate (authenticator.authenticate)
     # TODO: Implementar Cache
