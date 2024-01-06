@@ -4,8 +4,8 @@ import json
 from microservices import db
 from microservices import predictor
 
-@app.route('/service', methods=['GET'])
-def service():
+@app.route('/predict', methods=['GET'])
+def predict():
 
     # TODO: Authenticate (authenticator.authenticate)
     # TODO: Implementar Cache

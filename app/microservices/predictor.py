@@ -2,7 +2,7 @@ import json
 import numpy as np
 import tensorflow as tf
 from sklearn.preprocessing import MinMaxScaler
-from sklearn.externals import joblib
+import joblib
 
 
 def predict(data):
@@ -11,11 +11,14 @@ def predict(data):
     model = tf.keras.models.load_model("./../model.keras")
     params = np.array([data["colesterol"], data["presion"], data["glucosa"], data["edad"], data["sobrepeso"], data["tabaquismo"]])
 
+    params = params.reshape(1, -1)
+
     # Cargo el scaler del modelo y lo aplico a los valores actuales
-    scaler = joblib.load("scaler.joblib")
+    scaler = joblib.load("./../scaler.joblib")
+    
     scaled_params = scaler.transform(params)
     
-    result = model.predict(np.expand_dims(scaled_params, axis=0))
+    result = model.predict(scaled_params)
 
     if result.item() < 1:
         response_data = {"respuesta": "El paciente no tiene riesgo cardiaco.", "valor": str(result.item())}, 200
