@@ -3,9 +3,13 @@ from flaskr import app
 import json
 from microservices import db
 from microservices import predictor
+from datetime import datetime
+
 
 @app.route('/predict', methods=['GET'])
 def predict():
+
+    start_time = datetime.now().timestamp()
 
     # TODO: Authenticate (authenticator.authenticate)
     # TODO: Implementar Cache
@@ -21,8 +25,36 @@ def predict():
 
     json_data = json.dumps(params)
 
-    # TODO: Log (logger.log)
-    return predictor.predict(json_data)
+     # Perform prediction
+    result = predictor.predict(json_data)
+
+    # Record the end time
+    end_time = datetime.now().timestamp()
+
+    # Calculate the elapsed time
+    elapsed_time = end_time - start_time
+
+    log_to_mongodb(json_data, result, start_time, elapsed_time,end_time)
+ 
+
+    return result
+
+def log_to_mongodb(json_data, result, start_time, elapsed_time,end_time):
+    db1 = db.get_db()
+    log_collection = db1.topicos2.log  
+    
+    log_entry = {
+        "start_time": start_time,
+        "params": json_data,
+        "response": result,
+        "elapsed_time": elapsed_time,
+        "end_time":end_time
+    }
+    
+    log_collection.insert_one(log_entry)
+    db1.close()
+
+
 
 @app.route('/testdb')
 def test_db():
