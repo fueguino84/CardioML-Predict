@@ -2,17 +2,12 @@ from flask import request
 from microservices import db
 
 def check_apikey(apikey):
-    # Establezco conexión con la base de datos MongoDB y selecciono la base de datos
     client = db.get_db()
-    db1 = client.topicos2
-
-    # Selecciono la colección donde almaceno los usuarios y sus API keys
-    users_collection = db1.users
+    users_collection = client.topicos2.users
 
     # Busco el Documento de MongoDB conteniendo la API key provista
     user_data = users_collection.find_one({"apikey": apikey})
 
-    # Cierro la conexión con la base de datos
     #client.close()
 
     return user_data
