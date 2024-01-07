@@ -3,6 +3,7 @@ from flaskr import app
 import json
 from microservices import authenticator
 from microservices import db
+from microservices import logger
 from microservices import predictor
 from datetime import datetime
 
@@ -31,30 +32,8 @@ def predict():
         # Perform prediction
         result = predictor.predict(json_data)
 
-        # Record the end time
-        end_time = datetime.now().timestamp()
-
-        # Calculate the elapsed time
-        elapsed_time = end_time - start_time
-
-        log_to_mongodb(json_data, result, start_time, elapsed_time,end_time,user_info)
+        logger.log(json_data, result, start_time, user_info)
     else:
         result = {"respuesta": "Error de autenticación"}, 403
 
     return result
-
-def log_to_mongodb(json_data, result, start_time, elapsed_time,end_time,user_info):
-    db1 = db.get_db()
-    log_collection = db1.topicos2.log  
-    
-    log_entry = {
-        "start_time": start_time,
-        "params": json_data,
-        "response": result,
-        "elapsed_time": elapsed_time,
-        "end_time":end_time,
-        "user_info":user_info
-    }
-    
-    log_collection.insert_one(log_entry)
-    db1.close()
