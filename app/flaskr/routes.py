@@ -7,13 +7,12 @@ from microservices import logger
 from microservices import predictor
 from datetime import datetime
 
-
 @app.route('/predict', methods=['GET'])
 def predict():
 
     start_time = datetime.now().timestamp()
 
-    authentication_result, user_info = authenticator.authenticate(request)
+    authentication_result, user_info = authenticator.authenticate(request, start_time)
     # TODO: Authenticate QUOTA (authenticator.authenticate)
     if authentication_result:
         # TODO: Implementar Cache

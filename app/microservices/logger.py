@@ -1,7 +1,6 @@
 from microservices import db
 from datetime import datetime
 
-
 def log(json_data, result, start_time, user_info):
     client = db.get_db()
     log_collection = client.topicos2.log  
