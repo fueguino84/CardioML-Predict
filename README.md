@@ -13,7 +13,11 @@ https://colab.research.google.com/drive/1wzFBkpgvHLcpnaoYZS7NLwO11kPrR_Pb
 
 ### Instructivo para correr el proceso de entrenamiento del modelo de ML
 
+### Instructivo para correr la app principal y los microservicios (ejecutar cada uno en una terminal diferente)
 1 cd app
 2 venv\Scripts\activate\
-3 python run.py
+3 cd microservices
+4 python authenticator.py | python predictor.py | python logger.py
+5 cd ../flaskr
+6 python gateway.py
 
