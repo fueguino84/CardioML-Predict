@@ -1,6 +1,14 @@
-from flask import request
-from microservices import db
+from flask import Flask, request, jsonify
+import db
 from datetime import datetime
+from bson import json_util
+
+app = Flask(__name__)
+
+def create_app():
+    app = Flask(__name__)
+
+    return app
 
 def check_apikey(apikey):
     client = db.get_db()
@@ -8,8 +16,6 @@ def check_apikey(apikey):
 
     # Busco el Documento de MongoDB conteniendo la API key provista
     user_data = users_collection.find_one({"apikey": apikey})
-
-    #client.close()
 
     return user_data
 
@@ -40,17 +46,20 @@ def check_quota(api_key, start_time, group):
         
         querys_collection.insert_one(query_entry)
 
-        #client.close()
-
         return True
 
-def authenticate(request, start_time):
+@app.route('/authenticate', methods=['POST'])
+def authenticate():
     api_key = request.headers.get('Authorization')
+    data = request.get_json()
     
     user_info = check_apikey(api_key)
-    
+
     if user_info:
-        if check_quota(api_key, start_time, user_info["group"]):
-            return True, user_info
+        if check_quota(api_key, data["start_time"], user_info["group"]):
+            return jsonify({"respuesta": "Authentication correcta", "user_info": json_util.dumps(user_info)})
     
-    return False, user_info
+    return jsonify({"respuesta": "Error de autenticación"}), 401
+
+if __name__ == '__main__':
+    app.run(port=5001, debug=True)
