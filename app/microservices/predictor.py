@@ -15,7 +15,7 @@ def create_app():
 def predict():
     try: 
         data = request.get_json()
-        data = json.loads(data)
+        # data = json.loads(data)
 
         model = tf.keras.models.load_model("./../../model.keras")
         params = np.array([data["colesterol"], data["presion"], data["glucosa"], data["edad"], data["sobrepeso"], data["tabaquismo"]])
