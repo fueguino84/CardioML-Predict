@@ -48,7 +48,7 @@ def predict():
                 #print("Usando la caché disponible:", cache_key)
                 logging.debug("Usando la caché disponible: %s", cache_key)
             else:
-                json_data = json.dumps(params)
+                json_data = params
                 result = requests.post(PREDICT_SERVICE_URL, json=json_data)
                 result = result.json()
                 
