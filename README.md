@@ -1,5 +1,4 @@
-# tp_final_topicos2
-## TP Final de Tópicos de Ing. de Software 2 (2023) - UNLP 
+# TP Final de Tópicos de Ing. de Software 2 (2023) - UNLP 
 
 ### Integrantes de grupo:
 Screpnik, Julieta\
@@ -23,4 +22,4 @@ https://colab.research.google.com/drive/1wzFBkpgvHLcpnaoYZS7NLwO11kPrR_Pb
 
 # Documentación de la API
 
-Chequear la [Documentación de la API](./api-docs/index.html) para mayores detalles.
+Chequear la [Documentación de la API](https://raulsanchez.com.ar/topicos2/api-docs/index.html) para mayores detalles.
