@@ -1,0 +1,31 @@
+<!-- Create an HTML file, e.g., index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My API Documentation</title>
+  <!-- Include Swagger UI styles -->
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@3.52.1/swagger-ui.css">
+</head>
+<body>
+  <div id="swagger-ui"></div>
+
+  <script>
+    // Load Swagger UI
+    window.onload = function() {
+      const ui = SwaggerUIBundle({
+        url: "./api.yaml",  // Replace with the path to your OpenAPI Specification
+        dom_id: '#swagger-ui',
+        deepLinking: true,
+        presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
+        plugins: [SwaggerUIBundle.plugins.DownloadUrl],
+      });
+
+      window.ui = ui;
+    };
+  </script>
+
+  <!-- Include Swagger UI scripts -->
+  <script src="https://unpkg.com/swagger-ui-dist@3.52.1/swagger-ui-bundle.js"></script>
+  <script src="https://unpkg.com/swagger-ui-dist@3.52.1/swagger-ui-standalone-preset.js"></script>
+</body>
+</html>

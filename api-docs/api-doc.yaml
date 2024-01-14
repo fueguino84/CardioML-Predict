@@ -1,0 +1,179 @@
+openapi: 3.0.0
+servers: []
+info:
+  description: >
+    ## Introducción
+
+    En este repositorio, se presenta la solución propuesta para el proyecto integrador de la materia "Tópicos de Ingeniería de Software II". La propuesta implica el desarrollo de un servicio web (API) que ofrece acceso a un modelo de red neuronal.
+
+    
+    El objetivo principal de este modelo es diagnosticar el riesgo cardíaco de un paciente a partir de datos clínicos proporcionados, tales como el nivel de colesterol, la presión arterial, el nivel de azúcar en sangre, la edad, el sobrepeso y el hábito de fumar.
+  version: 1.0.0
+  title: Predictor de Riesgo Cardíaco
+  termsOfService: ''
+  contact:
+    url: https://github.com/fueguino84/tp_final_topicos2
+tags:
+  - name: API Gateway
+  - name: Authenticator
+  - name: Predictor
+  - name: Logger
+paths:
+  /predict:
+    get:
+      summary: 'PredictCardiacRisk'
+      description: ''
+      parameters:
+        - name: colesterol
+          in: query
+          required: false
+          schema:
+            type: string
+            default: '0'
+        - name: presion
+          in: query
+          required: false
+          schema:
+            type: string
+            default: '0'
+        - name: glucosa
+          in: query
+          required: false
+          schema:
+            type: string
+            default: '0'
+        - name: edad
+          in: query
+          required: false
+          schema:
+            type: string
+            default: '0'
+        - name: sobrepeso
+          in: query
+          required: false
+          schema:
+            type: string
+            default: '0'
+        - name: tabaquismo
+          in: query
+          required: false
+          schema:
+            type: string
+            default: '0'
+      operationId: ''
+      responses:
+        '200':
+          description: Default response
+        '400':
+          description: Error por valores incorrectos
+        '500':
+          description: Error al predecir
+      tags:
+        - API Gateway
+      security:
+        - api_key: []
+
+    post:
+      tags:
+        - Predictor
+      summary: 'PredictCardiacRisk'
+      description: ''
+      operationId: ''
+      responses:
+        '200':
+          description: Default response
+        '500':
+          description: Error de predicción
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                colesterol:
+                  type: string
+                presion:
+                  type: string
+                glucosa:
+                  type: string
+                edad:
+                  type: string
+                sobrepeso:
+                  type: string
+                tabaquismo:
+                  type: string
+                  
+  /train_model:
+    get:
+      tags:
+        - API Gateway
+      summary: ModelTrain
+      description: ''
+      operationId: ''
+      responses:
+        '200':
+          description: Default response
+        '500':
+          description: Error durante el entrenamiento
+  /authenticate:
+    post:
+      tags:
+        - Authenticator
+      summary: 'AuthenticateUser'
+      description: ''
+      operationId: ''
+      responses:
+        '200':
+          description: Default response
+        '401':
+          description: Error de autenticación
+        '403':
+          description: Cuota de usuario excedida
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_time:
+                  type: string
+                  description: timestamp
+      security:
+        - api_key: []
+  /log:
+    post:
+      summary: 'LogRequest'
+      description: ''
+      operationId: ''
+      responses:
+        '200':
+          description: Default response
+      tags:
+        - Logger
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_time:
+                  type: string
+                params:
+                  type: string
+                response:
+                  type: string
+                elapsed_time:
+                  type: string
+                end_time:
+                  type: string
+                user_info:
+                  type: string
+securitySchemes:
+    api_key:
+      type: apiKey
+      name: Authorization
+      in: header
+security: []

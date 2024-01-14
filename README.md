@@ -21,3 +21,6 @@ https://colab.research.google.com/drive/1wzFBkpgvHLcpnaoYZS7NLwO11kPrR_Pb
 5 cd ../flaskr
 6 python gateway.py
 
+# Documentación de la API
+
+Chequear la [Documentación de la API](./api-docs/index.html) para mayores detalles.
