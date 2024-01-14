@@ -5,11 +5,6 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-def create_app():
-    app = Flask(__name__)
-    
-    return app
-
 @app.route('/log', methods=['POST'])
 def log():
     data = request.get_json()

@@ -15,7 +15,6 @@ PREDICT_SERVICE_URL = 'http://localhost:5002/predict'
 # Configura el nivel de registro (DEBUG, INFO, etc.)
 logging.basicConfig(level=logging.DEBUG)
 
-
 CACHE_SIZE = 100
 CACHE_EXPIRATION_TIME = 60  # segundos
 cache = TTLCache(maxsize=CACHE_SIZE, ttl=CACHE_EXPIRATION_TIME)

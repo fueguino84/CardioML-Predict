@@ -5,11 +5,6 @@ from bson import json_util
 
 app = Flask(__name__)
 
-def create_app():
-    app = Flask(__name__)
-
-    return app
-
 def check_apikey(apikey):
     client = db.get_db()
     users_collection = client.topicos2.users
