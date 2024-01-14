@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify
 import numpy as np
 import tensorflow as tf
 import joblib
-import json
 
 app = Flask(__name__)
 
@@ -15,15 +14,14 @@ def create_app():
 def predict():
     try: 
         data = request.get_json()
-        # data = json.loads(data)
 
-        model = tf.keras.models.load_model("./../../model.keras")
+        model = tf.keras.models.load_model("./../model.keras")
         params = np.array([data["colesterol"], data["presion"], data["glucosa"], data["edad"], data["sobrepeso"], data["tabaquismo"]])
 
         params = params.reshape(1, -1)
     
         # Cargo el scaler del modelo y lo aplico a los valores actuales
-        scaler = joblib.load("./../../scaler.joblib")
+        scaler = joblib.load("./../scaler.joblib")
         
         scaled_params = scaler.transform(params)
         
