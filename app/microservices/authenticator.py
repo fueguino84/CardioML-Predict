@@ -32,7 +32,7 @@ def check_quota(api_key, start_time, group):
 
     if (count_documents >= quota):
         print(f"No se procesa la petición porque se excedió la cuota disponible: {quota} consultas por minuto")
-        return {"error": "Quota excedida"}, 403
+        return False
     else:
         query_entry = {
             "api_key": api_key,
@@ -53,6 +53,8 @@ def authenticate():
     if user_info:
         if check_quota(api_key, data["start_time"], user_info["group"]):
             return jsonify({"respuesta": "Authentication correcta", "user_info": json_util.dumps(user_info)})
+        else:
+             return jsonify({"respuesta": "Cuota excedida", "user_info": json_util.dumps(user_info)}), 403
     
     return jsonify({"respuesta": "Error de autenticación"}), 401
 
