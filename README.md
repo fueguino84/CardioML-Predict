@@ -1,10 +1,9 @@
 # TP Final de Tópicos de Ing. de Software 2 (2023) - UNLP 
 
-<p align="justify">
 En este repositorio, se presenta la solución propuesta para el [proyecto integrador](https://docs.google.com/document/d/1-rceIJhrVA3VBwmdT69tAKvkVJaLL9AIF9mbaSlDoLo/edit?usp=sharing) de la materia "Tópicos de Ingeniería de Software II". La propuesta implica el desarrollo de un servicio web (API) que ofrece acceso a un modelo de red neuronal.
 
 El objetivo principal de este modelo es diagnosticar el riesgo cardíaco de un paciente a partir de datos clínicos proporcionados, tales como el nivel de colesterol, la presión arterial, el nivel de azúcar en sangre, la edad, el sobrepeso y el hábito de fumar.
-</p>
+
 
 ### Integrantes de grupo:
 Screpnik, Julieta\
@@ -53,8 +52,8 @@ Además, se implementó un sistema de caché (TTLCache) para almacenar resultado
 <p align="justify">
 El sistema actual consta de un servicio de autenticación implementado en Flask que valida la autenticidad de las solicitudes HTTP utilizando API KEY proporcionadas en los encabezados. Además, se implementó un mecanismo de cuotas para limitar el número de solicitudes por minuto permitidas por usuario de acuerdo al tipo de cuenta (FREEMIUM y PREMIUM).
 
-FREEMIUM; 5 solicitudes por minuto (RPM).
-PREMIUM: 50 solicitudes por minuto (RPM).
+* FREEMIUM; 5 solicitudes por minuto (RPM).
+* PREMIUM: 50 solicitudes por minuto (RPM).
 </p>
 
 **Decisión**
