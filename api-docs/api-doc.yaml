@@ -8,11 +8,25 @@ info:
 
     
     El objetivo principal de este modelo es diagnosticar el riesgo cardíaco de un paciente a partir de datos clínicos proporcionados, tales como el nivel de colesterol, la presión arterial, el nivel de azúcar en sangre, la edad, el sobrepeso y el hábito de fumar.
+    
+    ## Integrantes del grupo
+    
+    - Screpnik, Julieta
+    
+    - Sánchez, Raúl
+    
+    ## Repositorio Github
+    
+    Nuestro código fuente se encuentra en un [repositorio privado en GitHub](https://github.com/fueguino84/tp_final_topicos2).
+    
+    
+    Para obtener acceso al repositorio y colaborar con nosotros, por favor, solicita acceso enviando una solicitud a [julietascrepnik@gmail.com](mailto:julietascrepnik@gmail.com) o a [fueguino84@gmail.com](mailto:fueguino84@gmail.com).
+
+
+    ¡Gracias por tu interés y apoyo!
   version: 1.0.0
   title: Predictor de Riesgo Cardíaco
   termsOfService: ''
-  contact:
-    url: https://github.com/fueguino84/tp_final_topicos2
 tags:
   - name: API Gateway
   - name: Authenticator
@@ -22,7 +36,7 @@ paths:
   /predict:
     get:
       summary: 'PredictCardiacRisk'
-      description: ''
+      description: 'Acceso principal para la predicción de riesgo cardíaco.'
       parameters:
         - name: colesterol
           in: query
@@ -63,7 +77,7 @@ paths:
       operationId: ''
       responses:
         '200':
-          description: Default response
+          description: Respuesta correcta
         '400':
           description: Error por valores incorrectos
         '500':
@@ -81,9 +95,9 @@ paths:
       operationId: ''
       responses:
         '200':
-          description: Default response
+          description: Respuesta correcta
         '500':
-          description: Error de predicción
+          description: Error al realizar la predicción
       requestBody:
         required: true
         content:
@@ -92,28 +106,32 @@ paths:
               type: object
               properties:
                 colesterol:
-                  type: string
+                  type: number
                 presion:
-                  type: string
+                  type: number
                 glucosa:
-                  type: string
+                  type: number
                 edad:
-                  type: string
+                  type: number
                 sobrepeso:
-                  type: string
+                  type: number
                 tabaquismo:
-                  type: string
-                  
+                  type: number
   /train_model:
     get:
       tags:
         - API Gateway
       summary: ModelTrain
-      description: ''
+      description: 'Acceso para el entrenamiento del modelo de la red neuronal.
+      
+      General el modelo keras (model.keras) y el scaler para los datos de entrada (scaler.joblib).
+      
+      
+      **Nota**: No es necesario ejecutarlo. La aplicación ya cuenta con estos archivos previamente generados.'
       operationId: ''
       responses:
         '200':
-          description: Default response
+          description: Respuesta correcta
         '500':
           description: Error durante el entrenamiento
   /authenticate:
@@ -125,7 +143,7 @@ paths:
       operationId: ''
       responses:
         '200':
-          description: Default response
+          description: Respuesta correcta
         '401':
           description: Error de autenticación
         '403':
@@ -138,8 +156,7 @@ paths:
               type: object
               properties:
                 start_time:
-                  type: string
-                  description: timestamp
+                  type: number
       security:
         - api_key: []
   /log:
@@ -160,18 +177,38 @@ paths:
               type: object
               properties:
                 start_time:
-                  type: string
+                  type: number
                 params:
                   type: string
                 response:
-                  type: string
+                  type: object
+                  properties:
+                    respuesta:
+                      type: string
+                    valor:
+                      type: string
                 elapsed_time:
-                  type: string
+                  type: number
                 end_time:
-                  type: string
+                  type: number
                 user_info:
-                  type: string
-securitySchemes:
+                  type: object
+                  properties:
+                    _id:
+                      type: object
+                      properties:
+                        $oid:
+                          type: string
+                    name:
+                      type: string
+                    email:
+                      type: string
+                    apikey:
+                      type: string
+                    group:
+                      type: string
+components:
+  securitySchemes:
     api_key:
       type: apiKey
       name: Authorization
