@@ -4,27 +4,103 @@ En este repositorio, se presenta la solución propuesta para el [proyecto integr
 
 El objetivo principal de este modelo es diagnosticar el riesgo cardíaco de un paciente a partir de datos clínicos proporcionados, tales como el nivel de colesterol, la presión arterial, el nivel de azúcar en sangre, la edad, el sobrepeso y el hábito de fumar.
 
-
 ### Integrantes de grupo:
 Screpnik, Julieta\
 Sánchez, Raúl
 
-
-### Archivo de Colab (contiene el modelo de red neuronal) 
+### Archivo de Colab (contiene el modelo de red neuronal) {#colab}
 https://colab.research.google.com/drive/1wzFBkpgvHLcpnaoYZS7NLwO11kPrR_Pb
 
+## Instructivo para preparar el sistema y entorno virtual para correr la aplicación principal y los microservicios
 
-### Instructivo para correr la app principal y los microservicios (ejecutar cada uno en una terminal diferente)
-1. cd app 
-2. venv\Scripts\activate\
-3. python .\microservices\authenticator.py | python .\microservices\predictor.py | python .\microservices\logger.py | python gateway.py
+**Paso 1:** Instalar Python (puede descargarse la  última versión de Python desde el <a href="https://www.python.org/" target="_blank">sitio oficial de Python</a>).
 
+**Paso 2:** Crear un directorio para la aplicación.
+```console
+mkdir test
+```
+**Paso 3:** Abrir una terminal y dirigirse al directorio recién creado.
+```console
+cd test
+```
+**Paso 4:** Clonar el repositorio git en el directorio actual
+```console
+git clone https://github.com/fueguino84/tp_final_topicos2.git .
+```
+**Paso 5:** Ingresar al directorio .\app
+```console
+cd app
+```
+**Paso 6:** Crear un entorno virtual
+```console
+python -m venv venv
+```
+**Paso 7:** Activar el entorno virtual
 
-# Documentación de la API
+En Windows:
+```console
+venv\Scripts\activate
+```
+En Linux o macOS:
+```console
+source venv/bin/activate
+```
+*Después de ejecutar este comando, verás el nombre de tu entorno virtual en la línea de comandos, indicando que el entorno virtual está activado.*
 
-Chequear la [Documentación de la API](https://raulsanchez.com.ar/topicos2/api-docs/index.html) para mayores detalles.
+**Paso 8:** Instalar las dependencias en el entorno virtual
+```console
+pip install Flask==3.0.0 cachetools==5.3.2 requests==2.31.0 pandas==2.1.4 numpy==1.26.3 scikit-learn==1.3.2 tensorflow==2.15.0 matplotlib==3.8.2 pymongo==4.6.1
+```
+## Instructivo para correr la aplicación principal y los microservicios en un entorno local
+*NOTA: Repetir los pasos 1 a 3 para cada servicio en una terminal diferente. Los servicios están configurados para ejecutarse en los puertos 5000 a 5003.*
 
-# Arquitectura 
+**Paso 1:** Abrir la terminal y dirigirse al directorio raíz de la aplicación
+```console
+cd app
+```
+**Paso 2:** Activar el entorno virtual
+
+En Windows:
+```console
+venv\Scripts\activate
+```
+En Linux o macOS:
+```console
+source venv/bin/activate
+```
+
+*Después de ejecutar este comando, verás el nombre de tu entorno virtual en la línea de comandos, indicando que el entorno virtual está activado.*
+
+**Paso 3:** Ejecutar la aplicación y los microservicios asociados
+
+**Microservicio Authenticator**
+```console
+cd microservices
+python authenticator.py
+```
+
+**Microservicio Predictor**
+```console
+cd microservices
+python .\microservices\predictor.py
+```
+
+**Microservicio Logger**
+```console
+cd microservices
+python logger.py
+```
+
+**API Gateway**
+```console
+python gateway.py
+```
+
+## Documentación de la API
+
+Chequear la <a href="https://raulsanchez.com.ar/topicos2/api-docs/index.html" target="_blank">Documentación de la API</a> para mayores detalles.
+
+## Arquitectura 
 
 <p align="justify">
 A continuación, se presenta la arquitectura de software diseñada para cumplir con los requisitos necesarios para la construcción de un servicio web (API) que brinda acceso a un modelo de red neuronal capaz de predecir el riesgo cardíaco en pacientes. 
