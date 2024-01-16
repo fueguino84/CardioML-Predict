@@ -1,0 +1,191 @@
+{
+	"info": {
+		"_postman_id": "5cf030e0-4180-45c3-9690-a30537062493",
+		"name": "TPI TOP2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "11694927"
+	},
+	"item": [
+		{
+			"name": "Paciente con riesgo cardiaco (app principal)",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": {}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "54e8a1106eeb36711ecb8c94598bcc70",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:5000/predict?colesterol=2.4&presion=1.4&glucosa=1.8&edad=72&sobrepeso=0&tabaquismo=0",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"predict"
+					],
+					"query": [
+						{
+							"key": "colesterol",
+							"value": "2.4"
+						},
+						{
+							"key": "presion",
+							"value": "1.4"
+						},
+						{
+							"key": "glucosa",
+							"value": "1.8"
+						},
+						{
+							"key": "edad",
+							"value": "72"
+						},
+						{
+							"key": "sobrepeso",
+							"value": "0"
+						},
+						{
+							"key": "tabaquismo",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Paciente sin riesgo cardiaco (app principal)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "54e8a1106eeb36711ecb8c94598bcc70",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:5000/predict?colesterol=2.2&presion=1.1&glucosa=0.6&edad=73&sobrepeso=0&tabaquismo=1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"predict"
+					],
+					"query": [
+						{
+							"key": "colesterol",
+							"value": "2.2"
+						},
+						{
+							"key": "presion",
+							"value": "1.1"
+						},
+						{
+							"key": "glucosa",
+							"value": "0.6"
+						},
+						{
+							"key": "edad",
+							"value": "73"
+						},
+						{
+							"key": "sobrepeso",
+							"value": "0"
+						},
+						{
+							"key": "tabaquismo",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "autenticate",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "54e8a1106eeb36711ecb8c94598bcc70",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n  \r\n    \"start_time\":0\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:5001/authenticate"
+			},
+			"response": []
+		},
+		{
+			"name": "Predict",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"colesterol\": 2.2,\r\n\"presionl\":1.1,\r\n\"glucosa\":0.6,\r\n\"edad\":73,\r\n\"sobrepeso\":0,\r\n\"tabaquismo\":1\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:5002/predict"
+			},
+			"response": []
+		},
+		{
+			"name": "logger",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"_id\": {\r\n    \"$oid\": \"659b20b3674a4b3dd6c097e4\"\r\n  },\r\n  \"start_time\": 1704665265.514595,\r\n  \"params\": \"{\\\"colesterol\\\": 2.2, \\\"presion\\\": 1.1, \\\"glucosa\\\": 0.6, \\\"edad\\\": 73.0, \\\"sobrepeso\\\": 0.0, \\\"tabaquismo\\\": 1.0}\",\r\n  \"response\": [\r\n    {\r\n      \"respuesta\": \"El paciente no tiene riesgo cardiaco.\",\r\n      \"valor\": \"1.854368065323797e-06\"\r\n    },\r\n    200\r\n  ],\r\n  \"elapsed_time\": 2.463681936264038,\r\n  \"end_time\": 1704665267.978277,\r\n  \"user_info\": {\r\n    \"_id\": {\r\n      \"$oid\": \"6598745db706703db920a7c1\"\r\n    },\r\n    \"name\": \"Juan Perez\",\r\n    \"email\": \"juan.perez@mymailaccount.com\",\r\n    \"apikey\": \"54e8a1106eeb36711ecb8c94598bcc70\",\r\n    \"group\": \"FREEMIUM\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:5002/log"
+			},
+			"response": []
+		},
+		{
+			"name": "modelo_entrenado",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:5000/train_model"
+			},
+			"response": []
+		}
+	]
+}
