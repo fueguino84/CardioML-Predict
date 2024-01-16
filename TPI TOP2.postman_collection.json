@@ -149,7 +149,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"colesterol\": 2.2,\r\n\"presionl\":1.1,\r\n\"glucosa\":0.6,\r\n\"edad\":73,\r\n\"sobrepeso\":0,\r\n\"tabaquismo\":1\r\n}\r\n",
+					"raw": "{\r\n\"colesterol\": 2.2,\r\n\"presion\":1.1,\r\n\"glucosa\":0.6,\r\n\"edad\":73,\r\n\"sobrepeso\":0,\r\n\"tabaquismo\":1\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -174,7 +174,7 @@
 						}
 					}
 				},
-				"url": "http://127.0.0.1:5002/log"
+				"url": "http://127.0.0.1:5003/log"
 			},
 			"response": []
 		},
