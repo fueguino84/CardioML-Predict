@@ -96,6 +96,11 @@ python logger.py
 python gateway.py
 ```
 
+## Tests HTTP para probar el funcionamiento de los servicios
+
+Chequear la <a href="https://docs.google.com/document/d/1-rceIJhrVA3VBwmdT69tAKvkVJaLL9AIF9mbaSlDoLo/edit?usp=sharing" target="_blank">Documentación de los test HTTP en Postman</a> para mayores detalles.
+
+
 ## Documentación de la API
 
 Chequear la <a href="https://raulsanchez.com.ar/topicos2/api-docs/index.html" target="_blank">Documentación de la API</a> para mayores detalles.
