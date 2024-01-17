@@ -98,7 +98,7 @@ python gateway.py
 
 ## Tests HTTP para probar el funcionamiento de los servicios
 
-Chequear la <a href="https://docs.google.com/document/d/1-rceIJhrVA3VBwmdT69tAKvkVJaLL9AIF9mbaSlDoLo/edit?usp=sharing" target="_blank">Documentación de los test HTTP en Postman</a> para mayores detalles.
+Chequear la <a href="https://documenter.getpostman.com/view/11694927/2s9YsQ8q9W" target="_blank">Documentación de los test HTTP en Postman</a> para mayores detalles.
 
 
 ## Documentación de la API
