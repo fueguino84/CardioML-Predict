@@ -8,8 +8,8 @@ El objetivo principal de este modelo es diagnosticar el riesgo cardíaco de un p
 Screpnik, Julieta\
 Sánchez, Raúl
 
-### Archivo de Colab (contiene el modelo de red neuronal) {#colab}
-https://colab.research.google.com/drive/1wzFBkpgvHLcpnaoYZS7NLwO11kPrR_Pb
+### Archivo de Colab (contiene el modelo de red neuronal)
+<a href="[https://www.python.org/](https://colab.research.google.com/drive/1wzFBkpgvHLcpnaoYZS7NLwO11kPrR_Pb)" target="_blank">https://colab.research.google.com/drive/1wzFBkpgvHLcpnaoYZS7NLwO11kPrR_Pb</a>
 
 ## Instructivo para preparar el sistema y entorno virtual para correr la aplicación principal y los microservicios
 
@@ -98,7 +98,7 @@ python gateway.py
 
 ## Tests HTTP para probar el funcionamiento de los servicios
 
-Chequear la <a href="https://documenter.getpostman.com/view/11694927/2s9YsQ8q9W" target="_blank">Documentación de los test HTTP en Postman</a> para mayores detalles.
+Chequear la <a href="https://documenter.getpostman.com/view/11694927/2s9YsQ8q9W" target="_blank">Documentación de los tests HTTP en Postman</a> para mayores detalles.
 
 
 ## Documentación de la API
