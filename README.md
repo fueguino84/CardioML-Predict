@@ -52,6 +52,8 @@ source venv/bin/activate
 pip install Flask==3.0.0 cachetools==5.3.2 requests==2.31.0 pandas==2.1.4 numpy==1.26.3 scikit-learn==1.3.2 tensorflow==2.15.0 matplotlib==3.8.2 pymongo==4.6.1
 ```
 ## Instructivo para correr la aplicación principal y los microservicios en un entorno local
+**(14/03/2024) IMPORTANTE: Las credenciales de MongoDB publicadas en 'app/microservices/db.py' no son válidas debido al perfil público del repositorio.**
+
 *NOTA: Repetir los pasos 1 a 3 para cada servicio en una terminal diferente. Los servicios están configurados para ejecutarse en los puertos 5000 a 5003.*
 
 **Paso 1:** Abrir la terminal y dirigirse al directorio raíz de la aplicación
