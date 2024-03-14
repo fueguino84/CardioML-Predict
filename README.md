@@ -5,8 +5,8 @@ En este repositorio, se presenta la solución propuesta para el [proyecto integr
 El objetivo principal de este modelo es diagnosticar el riesgo cardíaco de un paciente a partir de datos clínicos proporcionados, tales como el nivel de colesterol, la presión arterial, el nivel de azúcar en sangre, la edad, el sobrepeso y el hábito de fumar.
 
 ### Integrantes de grupo:
-Screpnik, Julieta\
-Sánchez, Raúl
+<a href="https://github.com/juliscrep" target="_blank">Screpnik, Julieta</a>\
+<a href="https://github.com/fueguino84" target="_blank">Sánchez, Raúl</a>
 
 ### Archivo de Colab (contiene el modelo de red neuronal)
 <a href="[https://www.python.org/](https://colab.research.google.com/drive/1wzFBkpgvHLcpnaoYZS7NLwO11kPrR_Pb)" target="_blank">https://colab.research.google.com/drive/1wzFBkpgvHLcpnaoYZS7NLwO11kPrR_Pb</a>
